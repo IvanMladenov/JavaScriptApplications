@@ -22,11 +22,11 @@
             carClass = input[i].class;
 
         var currentRow = $('<tr>')
-            .append($('<td>').text(manifacturer).attr('class', 'content'))
-            .append($('<td>').text(model).attr('class', 'content'))
-            .append($('<td>').text(year).attr('class', 'content'))
-            .append($('<td>').text(price).attr('class', 'content'))
-            .append($('<td>').text(carClass).attr('class', 'content'));
+            .append($('<td>').text(manifacturer))
+            .append($('<td>').text(model))
+            .append($('<td>').text(year))
+            .append($('<td>').text(price))
+            .append($('<td>').text(carClass));
 
         $('tbody').append(currentRow);
     }

@@ -6,3 +6,7 @@ table, th, td {
 th{
     padding: 3px 25px;
 }
+
+.head{
+    background-color: lightgreen;
+}
