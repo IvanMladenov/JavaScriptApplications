@@ -1,0 +1,28 @@
+section{
+    width: 300px;
+    overflow: hidden;
+}
+
+#slide{
+    width: 900px;
+    position: relative;
+}
+
+img{
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    /*position: relative;*/
+    /*float: left;*/
+}
+button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    top: 350px;
+}
+
+#right{
+    left: 268px;
+}
