@@ -9,13 +9,6 @@ var leftButton = $('#left'),
     imageIndex = 0,
     indent = 0;
 
-//setInterval(function(){
-//    indent++;
-//    animateImages();
-//},
-//timeout
-//);
-
 function animateImages() {
     indent = imageWidth * Math.abs((imageIndex % numberOfImages));
     slide.animate({
