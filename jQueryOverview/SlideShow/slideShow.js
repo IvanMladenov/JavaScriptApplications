@@ -2,12 +2,14 @@ var leftButton = $('#left'),
     rightButton = $('#right'),
     slide = $('#slide'),
     images = $('img'),
+    buttons = $('.btn'),
     numberOfImages = images.length,
     imageWidth = 300,
     animationTime = 500,
-    timeout = 5000,
+    timeout = 3000,
     imageIndex = 0,
-    indent = 0;
+    indent = 0,
+    autoplay;
 
 function animateImages() {
     indent = imageWidth * Math.abs((imageIndex % numberOfImages));
@@ -18,12 +20,16 @@ function animateImages() {
     )
 }
 
-setInterval(function () {
-        imageIndex--;
-        animateImages();
-    },
-    timeout
-);
+function autoPlay(){
+    autoplay = setInterval(function () {
+            imageIndex--;
+            animateImages();
+        },
+        timeout
+    );
+}
+
+autoPlay();
 
 leftButton.on('click', function () {
     imageIndex--;
@@ -33,4 +39,10 @@ leftButton.on('click', function () {
 rightButton.on('click', function () {
     imageIndex++;
     animateImages();
+});
+
+buttons.on('mouseover', function(){
+    clearInterval(autoplay);
+}).on('mouseleave', function(){
+    autoPlay();
 });
