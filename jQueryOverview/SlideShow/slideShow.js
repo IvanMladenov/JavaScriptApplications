@@ -32,15 +32,16 @@ function autoPlay(){
 autoPlay();
 
 leftButton.on('click', function () {
-    imageIndex--;
-    animateImages();
-});
-
-rightButton.on('click', function () {
     imageIndex++;
     animateImages();
 });
 
+rightButton.on('click', function () {
+    imageIndex--;
+    animateImages();
+});
+
+//stops and resumes autoplay when mouse over or leave
 buttons.on('mouseover', function(){
     clearInterval(autoplay);
 }).on('mouseleave', function(){

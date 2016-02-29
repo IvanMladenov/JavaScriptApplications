@@ -4,7 +4,7 @@ section{
 }
 
 #slide{
-    width: 900px;
+    width: 1500px;
     position: relative;
 }
 
@@ -12,15 +12,20 @@ img{
     display: inline-block;
     width: 300px;
     height: 300px;
-    /*position: relative;*/
-    /*float: left;*/
 }
+
+
 button{
     width: 40px;
     height: 40px;
+    font-size: 25px;
+    color: lightgray;
     border-radius: 50%;
     position: absolute;
-    top: 350px;
+    top: 150px;
+    outline: 0;
+    background: none;
+    z-index: 1;
 }
 
 #right{
