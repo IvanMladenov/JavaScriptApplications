@@ -39,10 +39,28 @@ var module = (function(){
             error: function(err){}
         })};
 
+    var listTownsByCountry = function(country){
+        var link = 'https://baas.kinvey.com/appdata/kid_bk_D2rnp0l/Towns' + '?query={"country":{"name":"' + country + '"}}';
+        $.ajax({
+            type:"GET",
+            url: link,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Basic SXZhbjoxMjM0");
+            },
+            success: function(data){
+                for (var index in data) {
+                    $('#wrapper').append($('<div>').text(data[index].name))
+                }
+                $('#wrapper').append($('<hr>'));
+            },
+            error: function(err){}
+        })};
+
     return {
         listCountries: listCountries,
         postCountry: postCountry,
-        deleteCountry: deleteCountry
+        deleteCountry: deleteCountry,
+        listTownsByCountry:listTownsByCountry
     }
 })();
 
@@ -58,4 +76,9 @@ $('#post-country').on('click', function(){
 $('#delete-country').on('click', function(){
     var countryForDelete = $('#delete-this').val();
     module.deleteCountry(countryForDelete);
+});
+
+$('#list-towns').on('click', function(){
+    var country = $('#choose-town').val();
+    module.listTownsByCountry(country);
 });
