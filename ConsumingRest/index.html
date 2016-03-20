@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consuming rest</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="libs/jquery.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="credentials"><span>Username: Ivan Password:1234</span></div>
+        <fieldset>
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="password">
+            <button id="login">Login</button>
+        </fieldset>
+        <fieldset>
+            <label for="name">Name: </label><input type="text" id="name"><br>
+            <label for="author">Author: </label><input type="text" id="author"><br>
+            <label for="isbn">ISBN: </label><input type="text" id="isbn"><br>
+            <button id="create-book">Create</button>
+        </fieldset>
+        <div id="books-container"></div>
+    </div>
+    <script src="scripts/createBook.js"></script>
+    <script src="scripts/deleteBook.js"></script>
+    <script src="scripts/editBook.js"></script>
+    <script src="scripts/eventListenerFactory.js"></script>
+    <script src="scripts/listBooks.js"></script>
+    <script src="scripts/login.js"></script>
+    <script src="scripts/requester.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>

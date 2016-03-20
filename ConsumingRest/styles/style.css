@@ -1,0 +1,37 @@
+div{
+    margin-bottom: 20px;
+}
+
+fieldset{
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+label{
+    display: block;
+}
+
+.book{
+    width: 200px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.edit{
+    float: right;
+}
+
+#credentials>span{
+    background-color: red;
+}
+
+button{
+    margin-top: 20px;
+}
+
+#books-container{
+    border: 1px solid black;
+}
