@@ -1,63 +1,60 @@
-var app = app || {};
-
 (function () {
-    app.router = Sammy(function () {
-        var appId = 'kid_bk_D2rnp0l',
-            appSecret = 'a855304d3f6047cb92179d8e6b81fe14',
-            selector = $('#wrapper'),
+    require.config({
+        paths: {
+            jquery: '../libs/jquery',
+            mustache: '../libs/mustache',
+            q: '../libs/q',
+            sammy: '../libs/sammy-latest.min',
+            bookController: 'controllers/bookController',
+            userController: 'controllers/userController',
+            requester: 'helpers/requester',
+            bookModel: 'models/bookModel',
+            userModel: 'models/userModel',
+            bookView: 'views/bookView',
+            userView: 'views/userView'
+        }
+    })
+})();
 
-            requester = app.requester.config(appId, appSecret),
+require(['bookController', 'userController', 'sammy'],
+    function (bookController, userController, Sammy) {
 
-            bookModel = app.bookModel.load(requester),
-            userModel = app.userModel.load(requester),
+        var router = Sammy(function () {
+            this.before({except: {path: '#login'}}, function () {
+                if (!sessionStorage.username) {
+                    this.redirect('#login');
+                }
+            });
 
-            bookView = app.bookView.load(selector),
-            userView = app.userView.load(selector),
+            this.get('#/login', function () {
+                userController.showLogin();
+            });
 
-            bookController = app.bookController.load(bookModel, bookView),
-            userController = app.userController.load(userModel, userView);
+            this.get('#/books', function () {
+                bookController.showBooks();
+            });
 
-        //this.before({
-        //    except: {path: '#\/(register|login)?'}, function() {
-        //        if (!sessionStorage.username) {
-        //            this.redirect('#/login')
-        //        }
-        //    });
+            this.bind('redirectUrl', function (e, data) {
+                this.redirect(data.url)
+            });
 
-        this.before({except: {path: '#login'}}, function () {
-            if (!sessionStorage.username) {
-                this.redirect('#login');
-            }
+            this.bind('login', function (e, data) {
+                userController.login(data);
+            });
+
+            this.bind('edit-book', function (e, data) {
+                bookController.editBook(data);
+            });
+
+            this.bind('create-book', function (e, data) {
+                bookController.createBook(data);
+            });
+
+            this.bind('delete-book', function (e, data) {
+                bookController.deleteBook(data);
+            })
         });
 
-        this.get('#/login', function () {
-            userController.showLogin();
-        });
-
-        this.get('#/books', function () {
-            bookController.showBooks();
-        });
-
-        this.bind('redirectUrl', function (e, data) {
-            this.redirect(data.url)
-        });
-
-        this.bind('login', function (e, data) {
-            userController.login(data);
-        });
-
-        this.bind('edit-book', function(e, data){
-            bookController.editBook(data);
-        });
-
-        this.bind('create-book', function (e, data) {
-            bookController.createBook(data);
-        });
-
-        this.bind('delete-book', function (e, data) {
-            bookController.deleteBook(data);
-        })
+        router.run('#/login');
     });
 
-    app.router.run('#/login');
-})();
